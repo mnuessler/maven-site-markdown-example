@@ -4,12 +4,23 @@
     <artifactId>maven-site-markdown-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Maven site markdown example</name>
+    <name>Maven Site Markdown Example</name>
+    <description></description>
     <inceptionYear>2013</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.version>3.0</maven.version>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <scm>
@@ -19,8 +30,8 @@
     </scm>
 
     <ciManagement>
-        <system>Travis</system>
-        <url></url>
+        <system>travis-ci</system>
+        <url>http://travis-ci.org/mnuessler/maven-site-markdown-example</url>
     </ciManagement>
 
     <issueManagement>
@@ -30,17 +41,45 @@
 
     <distributionManagement>
         <site>
-            <id>github-pages</id>
-            <name>Github Pages</name>
-            <url></url>
+            <id>github</id>
+            <name>Github</name>
+            <url>scm:git:ssh://git@github.com/mnuessler/maven-site-markdown-example.git</url>
         </site>
     </distributionManagement>
 
+    <prerequisites>
+        <maven>${maven.version}</maven>
+    </prerequisites>
+
+    <developers>
+        <developer>
+            <id>mnuessler</id>
+            <name>Matthias Nuessler</name>
+            <email>http://www.google.com/recaptcha/mailhide/d?k=01H8VsyNbhqMEaU7iXWIIdEA==&amp;c=JEm3kAEcwiO6qt1kfxgVOxuZ3U0JZXhxD81yB-C6b7k=</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+    </developers>
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.github</groupId>
+                    <artifactId>site-maven-plugin</artifactId>
+                    <version>0.8</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.doxia</groupId>
@@ -51,5 +90,30 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>gh-pages</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.github</groupId>
+                        <artifactId>site-maven-plugin</artifactId>
+                        <configuration>
+                            <message>Creating site for ${project.version}</message>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>site</goal>
+                                </goals>
+                                <phase>site</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
