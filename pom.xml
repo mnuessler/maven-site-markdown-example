@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.mnuessler</groupId>
+    <artifactId>maven-site-markdown-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Maven site markdown example</name>
+    <inceptionYear>2013</inceptionYear>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <scm>
+        <connection>scm:git:https://github.com/mnuessler/maven-site-markdown-example.git</connection>
+        <developerConnection>scm:git:git@github.com:mnuessler/maven-site-markdown-example.git</developerConnection>
+        <url>https://github.com/mnuessler/maven-site-markdown-example</url>
+    </scm>
+
+    <ciManagement>
+        <system>Travis</system>
+        <url></url>
+    </ciManagement>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/mnuessler/maven-site-markdown-example/issues</url>
+    </issueManagement>
+
+    <distributionManagement>
+        <site>
+            <id>github-pages</id>
+            <name>Github Pages</name>
+            <url></url>
+        </site>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-markdown</artifactId>
+                        <version>1.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
